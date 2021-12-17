@@ -23,7 +23,7 @@ proc all {} {
   }
 
 proc sim {} {
-    vsim -novopt +UVM_TESTNAME=my_test top
+    vsim +UVM_TESTNAME=my_test top
   }
 
 proc runa {} {
