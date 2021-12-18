@@ -23,7 +23,7 @@ proc all {} {
   }
 
 proc sim {} {
-    vsim +UVM_TESTNAME=my_test top
+    vsim -novopt -optionset UVMDEBUG +UVM_TESTNAME=my_test top
   }
 
 proc runa {} {

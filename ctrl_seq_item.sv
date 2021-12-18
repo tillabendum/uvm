@@ -1,7 +1,8 @@
 class ctrl_seq_item extends uvm_sequence_item;
    `uvm_object_utils( ctrl_seq_item )
 
-   rand byte data;
+   byte data;
+   rand int details;
 
    function new();
       super.new();

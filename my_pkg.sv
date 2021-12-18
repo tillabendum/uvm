@@ -6,6 +6,7 @@ virtual interface my_if global_vif;
 
 // sequences
 `include "ctrl_seq_item.sv"
+`include "ctrl_subsequence.sv"
 `include "ctrl_sequence.sv"
 `include "ctrl_drv.sv"
 

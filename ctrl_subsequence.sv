@@ -1,12 +1,12 @@
-class ctrl_sequence extends uvm_sequence #( ctrl_seq_item );
-`uvm_object_utils( ctrl_sequence );
+class ctrl_subsequence extends uvm_sequence #( ctrl_seq_item );
+`uvm_object_utils( ctrl_subsequence );
 
 function new( string name = "" );
    super.new( name );
 endfunction: new
 
-ctrl_seq_item     req;
-ctrl_subsequence  subreq;
+ctrl_seq_item req;
+
 
 task pre_start();
   `uvm_info( get_name, "Doing pre_start", UVM_MEDIUM );
@@ -19,7 +19,6 @@ endtask
 
 task pre_body();
   `uvm_info( get_name, "Doing pre_body", UVM_MEDIUM );
-  subreq = ctrl_subsequence::type_id::create( "subreq" );
 endtask
 
 task post_body();
@@ -41,19 +40,17 @@ function void post_do( uvm_sequence_item this_item );
 endfunction
 
 
+
+
+
 task body;
-  for( int i = 0; i < 4; i++ )
-    if( i != 2 )
+   for( int i = 0; i < 2; i++ )
       begin
-        req = new();
-        req.data = i;
-        start_item( req );
-        `uvm_info( get_name, { "Sending transaction ", req.convert2string() }, UVM_MEDIUM );
-        finish_item( req );
-      end
-    else
-      begin
-        subreq.start( m_sequencer, this );
+         req = new();
+         req.data = 100 + i;
+         start_item( req );
+         `uvm_info( get_name, { "Sending subtransaction ", req.convert2string() }, UVM_MEDIUM );
+         finish_item( req );
       end
 endtask: body
-endclass : ctrl_sequence
+endclass : ctrl_subsequence

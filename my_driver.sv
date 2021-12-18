@@ -29,7 +29,7 @@ task run_phase( uvm_phase phase );
       begin
         dst.get( data );
         vif.cnt <= vif.cnt + 1;
-        uvm_report_info( "run", $psprintf( "got %0d-%08h", vif.cnt, data.a ) );
+        //uvm_report_info( "run", $psprintf( "got %0d-%08h", vif.cnt, data.a ) );
       end
   //
   phase.drop_objection( this );
