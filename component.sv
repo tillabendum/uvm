@@ -13,7 +13,9 @@ function void build_phase( uvm_phase phase );
     begin
       `uvm_fatal( get_name(), "Config Error" )
     end
-  `uvm_info( get_name(), $psprintf( "Received value = %0d", val ), 100 )
+  `uvm_info( get_name(), $psprintf( "Received val = %0d", val ), 100 )
+
+
 
 endfunction : build_phase
 

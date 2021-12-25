@@ -18,7 +18,6 @@ endfunction: new
 
 virtual function void build_phase( uvm_phase phase );
   super.build_phase( phase );
-  uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
   fifo = new( "fifo", this );
   gen = my_generator::type_id::create( "gen", this );
   drv = my_driver::type_id::create( "drv", this );
@@ -26,6 +25,7 @@ virtual function void build_phase( uvm_phase phase );
   sequencer = new ( "sequencer", this );
   seq = ctrl_sequence::type_id::create( "seq", this );
   cmp = component::type_id::create( "cmp", this );
+  uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
 endfunction : build_phase
 
 

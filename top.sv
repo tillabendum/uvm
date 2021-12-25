@@ -17,7 +17,7 @@ my_if my_if( .clk_i ( clk ) );
 
 initial
   begin
-    my_pkg::global_vif = my_if;
+    uvm_resource_db #( virtual interface my_if )::set( "*", "vif", my_if, null );
     run_test();
   end
 
