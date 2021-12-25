@@ -9,6 +9,7 @@ uvm_tlm_fifo #( my_data ) fifo;
 uvm_sequencer #( ctrl_seq_item ) sequencer;
 ctrl_sequence                    seq;
 ctrl_drv                         cdrv;
+component                        cmp;
 
 function new ( string name = "my_env", uvm_component parent = null );
   super.new( name, parent );
@@ -17,12 +18,14 @@ endfunction: new
 
 virtual function void build_phase( uvm_phase phase );
   super.build_phase( phase );
+  uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
   fifo = new( "fifo", this );
   gen = my_generator::type_id::create( "gen", this );
   drv = my_driver::type_id::create( "drv", this );
   cdrv = ctrl_drv::type_id::create( "cdrv", this );
   sequencer = new ( "sequencer", this );
   seq = ctrl_sequence::type_id::create( "seq", this );
+  cmp = component::type_id::create( "cmp", this );
 endfunction : build_phase
 
 
