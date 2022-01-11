@@ -15,8 +15,11 @@ endfunction: new
 
 function void build_phase( uvm_phase phase );
   super.build_phase( phase );
-  vif = my_pkg::global_vif;
   dst = new ( "dst", this );
+
+  if( !uvm_config_db #( virtual interface my_if )::get( this, "", "vif", vif ) )
+    `uvm_fatal( get_name(), "Config Error" )
+
 endfunction : build_phase
 
 task run_phase( uvm_phase phase );

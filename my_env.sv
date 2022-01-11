@@ -9,6 +9,7 @@ uvm_tlm_fifo #( my_data ) fifo;
 uvm_sequencer #( ctrl_seq_item ) sequencer;
 ctrl_sequence                    seq;
 ctrl_drv                         cdrv;
+component                        cmp;
 
 function new ( string name = "my_env", uvm_component parent = null );
   super.new( name, parent );
@@ -33,6 +34,8 @@ virtual function void build_phase( uvm_phase phase );
     begin
       `uvm_info( get_name, "Config NOT found ", 100);
     end
+  cmp = component::type_id::create( "cmp", this );
+  uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
 endfunction : build_phase
 
 
