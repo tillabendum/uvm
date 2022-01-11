@@ -23,6 +23,16 @@ virtual function void build_phase( uvm_phase phase );
   cdrv = ctrl_drv::type_id::create( "cdrv", this );
   sequencer = new ( "sequencer", this );
   seq = ctrl_sequence::type_id::create( "seq", this );
+
+  uvm_config_db #( int )::set( this, ".", "haos", 6 );
+  if( uvm_config_db #( int )::exists( this, ".", "haos" ))
+    begin
+      `uvm_info( get_name, $psprintf( "Config found\nwell preserved %d", 5 ), 100);
+    end
+  else
+    begin
+      `uvm_info( get_name, "Config NOT found ", 100);
+    end
 endfunction : build_phase
 
 
