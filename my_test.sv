@@ -1,9 +1,6 @@
 class my_test extends uvm_test;
    `uvm_component_utils( my_test )
-   virtual interface my_if vif;
    my_env env;
-
-
 
    function new( string name, uvm_component parent );
       super.new( name, parent );
@@ -17,8 +14,6 @@ class my_test extends uvm_test;
   task run_phase( uvm_phase phase );
     phase.raise_objection( this );
     super.run();
-    `uvm_info( "catz", "The cat says 'meow'", UVM_INFO );
-    `uvm_info( "catr", "The cat says 'gaw'", UVM_INFO );
     phase.drop_objection( this );
   endtask
 

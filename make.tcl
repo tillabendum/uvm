@@ -16,14 +16,12 @@ proc up {} {
   }
 
 proc all {} {
-    vlog -sv my_if.sv
     vlog -sv my_pkg.sv
-
     vlog -sv top.sv
   }
 
 proc sim {} {
-    vsim -novopt +UVM_TESTNAME=my_test top
+    vsim -voptargs=+acc -optionset UVMDEBUG +UVM_TESTNAME=my_test top
   }
 
 proc runa {} {
