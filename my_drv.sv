@@ -13,7 +13,14 @@ task run_phase( uvm_phase phase );
       seq_item_port.get_next_item( req );
       `uvm_info( "Driver got item", "", UVM_MEDIUM )
       if( req != null )
-        seq_item_port.item_done();
+        begin
+          int processing_time;
+          randomize( processing_time ) with { processing_time inside { [0:4] }; };
+          repeat( processing_time )
+            #1ns;
+          `uvm_info( "Driver did delay", $psprintf( "%0d", processing_time ), UVM_MEDIUM )
+          seq_item_port.item_done();
+        end
     end
 endtask
 
