@@ -19,6 +19,7 @@ endfunction: new
 
 task pre_start;
   randomize();
+  `uvm_info( "Sequence created", $psprintf( "%0d items to send", pauses.size ), UVM_MEDIUM )
 endtask
 
 task body;
