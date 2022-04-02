@@ -2,12 +2,20 @@
 import uvm_pkg::*;
 import my_pkg::*;
 // `include "uvm_macros.svh"
-module top;
+module top_indirect;
 
 bit clk;
 initial
   forever
     #( 5ns ) clk = ~clk;
+
+logic reset;
+
+initial
+  begin
+    @( posedge clk ) reset <= 1;
+    @( posedge clk ) reset <= 0;
+  end
 
 
 mem_if #(
@@ -16,11 +24,12 @@ mem_if #(
   ) mem_if ();
 
 
-mem #(
+mem_indirect #(
     .DWIDTH( 8 ),
     .AWIDTH( 6 )
   ) DUT (
     .mem_if( mem_if ),
+    .srst_i( reset ),
     .clk_i( clk )
   );
 
