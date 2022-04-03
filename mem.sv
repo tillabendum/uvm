@@ -1,6 +1,6 @@
 module mem #(
     parameter DWIDTH = 8,
-    parameter AWIDTH = 6
+    parameter AWIDTH = 8
   )(
     mem_if  mem_if,
     input clk_i

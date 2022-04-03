@@ -1,6 +1,6 @@
 module mem_indirect #(
     parameter DWIDTH          = 8,
-    parameter AWIDTH          = 4,
+    parameter AWIDTH          = 8,
     parameter INDIRECT_AWIDTH = 8 // For this example we set INDIRECT_AWIDTH no more than DWIDTH
   )(
     mem_if  mem_if,

@@ -11,14 +11,14 @@ initial
 
 
 mem_if #(
-    .DWIDTH( 8 ),
-    .AWIDTH( 6 )
+    .DWIDTH( my_pkg::DWIDTH ),
+    .AWIDTH( my_pkg::INTERFACE_AWIDTH )
   ) mem_if ();
 
 
 mem #(
-    .DWIDTH( 8 ),
-    .AWIDTH( 6 )
+    .DWIDTH( my_pkg::DWIDTH ),
+    .AWIDTH( my_pkg::INTERFACE_AWIDTH )
   ) DUT (
     .mem_if( mem_if ),
     .clk_i( clk )
