@@ -7,9 +7,9 @@ class mem_req_item #(
 
 typedef enum { WR, RD } op_t;
 
-bit [AWIDTH - 1 : 0]  addr;
-bit [DWIDTH - 1 : 0]  data;
-op_t                    op;
+rand bit [AWIDTH - 1 : 0]  addr;
+rand bit [DWIDTH - 1 : 0]  data;
+rand op_t                    op;
 
 
 function new();

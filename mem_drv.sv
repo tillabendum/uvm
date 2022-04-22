@@ -15,6 +15,7 @@ task run_phase( uvm_phase phase );
       if( req != null )
         begin
           seq_item_port.item_done();
+          `uvm_info( "Driver released item", "", UVM_MEDIUM )
         end
     end
 endtask

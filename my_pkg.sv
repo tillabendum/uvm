@@ -8,7 +8,9 @@ package my_pkg;
   localparam CAPACITY_AWIDTH = 8; // Address with that characterize memory capacity
 
   `include "mem_req_item.sv"
-  `include "mem_rsp_item.sv"
+  `include "api_write_seq.sv"
+  `include "api_read_seq.sv"
+
   `include "mem_ladder_seq.sv"
   `include "mem_drv.sv"
 
