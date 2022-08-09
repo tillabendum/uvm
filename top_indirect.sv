@@ -2,14 +2,14 @@
 import uvm_pkg::*;
 import my_pkg::*;
 // `include "uvm_macros.svh"
-module top;
+module top_indirect;
 
-bit   clk;
-logic reset;
-
+bit clk;
 initial
   forever
     #( 5ns ) clk = ~clk;
+
+logic reset;
 
 initial
   begin
@@ -18,34 +18,24 @@ initial
   end
 
 
-
 mem_if #(
     .DWIDTH( my_pkg::DWIDTH ),
     .AWIDTH( my_pkg::INTERFACE_AWIDTH )
-  ) mem_if (
-    .clk_i ( clk   ),
-    .srst_i( reset )
-  );
-
-mem_bfm #(
-    .DWIDTH( my_pkg::DWIDTH ),
-    .AWIDTH( my_pkg::INTERFACE_AWIDTH )
-  ) mem_bfm (
-    .itf( mem_if )
-  );
+  ) mem_if ();
 
 
-mem #(
-    .DWIDTH( my_pkg::DWIDTH ),
-    .AWIDTH( my_pkg::INTERFACE_AWIDTH )
+mem_indirect #(
+    .DWIDTH         ( my_pkg::DWIDTH ),
+    .AWIDTH         ( my_pkg::INTERFACE_AWIDTH ),
+    .INDIRECT_AWIDTH( my_pkg::CAPACITY_AWIDTH )
   ) DUT (
     .mem_if( mem_if ),
+    .srst_i( reset ),
     .clk_i( clk )
   );
 
 initial
   begin
-    uvm_resource_db #( virtual interface mem_bfm )::set( "*", "bfm", mem_bfm, null );
     run_test();
   end
 
