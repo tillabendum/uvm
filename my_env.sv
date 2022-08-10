@@ -3,7 +3,7 @@ class my_env extends uvm_env;
 
 
 uvm_sequencer #( mem_req_item )   sequencer;
-typedef mem_ladder_seq  #( .AWIDTH( CAPACITY_AWIDTH ), .DWIDTH( DWIDTH ) ) ladder_t;
+typedef mem_ladder_seq  #( .AWIDTH( AWIDTH ), .DWIDTH( DWIDTH ) ) ladder_t;
 ladder_t ladder;
 mem_drv  drv;
 

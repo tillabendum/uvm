@@ -4,13 +4,12 @@ package my_pkg;
 
   // Environment constants
   localparam DWIDTH = 8;            //Data width
-  localparam INTERFACE_AWIDTH = 8;  // Address width of DUT and interface connections
-  localparam CAPACITY_AWIDTH = 8;   // Address with that characterize memory capacity
+  localparam AWIDTH = 8;            // Address width of DUT and interface connections
 
   `include "mem_req_item.sv"
 
   // Environment typedefs
-  typedef mem_req_item #( .DWIDTH( DWIDTH ), .AWIDTH( CAPACITY_AWIDTH ) ) mem_req_item_t;
+  typedef mem_req_item #( .DWIDTH( DWIDTH ), .AWIDTH( AWIDTH ) ) mem_req_item_t;
 
 
 

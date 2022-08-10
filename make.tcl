@@ -22,7 +22,6 @@ proc all {} {
     vlog -sv my_pkg.sv
     vlog -sv mem_bfm.sv
     vlog -sv top.sv
-    vlog -sv top_indirect.sv
   }
 
 proc sim {} {
