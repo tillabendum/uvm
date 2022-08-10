@@ -1,7 +1,4 @@
-class api_write_seq #(
-  parameter DWIDTH = 8,
-  parameter AWIDTH = 8
-) extends uvm_sequence #( mem_req_item );
+class api_write_seq extends uvm_sequence #( mem_req_item );
 
 `uvm_object_utils( api_write_seq )
 
@@ -11,7 +8,7 @@ bit [DWIDTH - 1 : 0]  data;
 
 
 task body();
-  req = mem_req_item #( .DWIDTH( DWIDTH ), .AWIDTH( AWIDTH ) )::type_id::create( "mem_write_request" );
+  req = mem_req_item::type_id::create( "mem_write_request" );
   start_item( req );
   if( !( req.randomize() with {
     req.addr == local::addr;

@@ -1,19 +1,9 @@
 package my_pkg;
   import uvm_pkg::*;
+  import my_params_pkg::*;
   `include "uvm_macros.svh"
 
-  // Environment constants
-  localparam DWIDTH = 8;            //Data width
-  localparam AWIDTH = 8;            // Address width of DUT and interface connections
-
   `include "mem_req_item.sv"
-
-  // Environment typedefs
-  typedef mem_req_item #( .DWIDTH( DWIDTH ), .AWIDTH( AWIDTH ) ) mem_req_item_t;
-
-
-
-
 
   `include "registers.sv"
   `include "my_reg_file.sv"

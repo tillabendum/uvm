@@ -1,7 +1,5 @@
-class mem_req_item #(
-    parameter DWIDTH = 8,
-    parameter AWIDTH = 8
-  ) extends uvm_sequence_item;
+class mem_req_item extends uvm_sequence_item;
+
 
 `uvm_object_utils( mem_req_item )
 

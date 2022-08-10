@@ -1,11 +1,13 @@
-interface mem_bfm #(
-    parameter DWIDTH = 8,
-    parameter AWIDTH = 8
-  )( interface itf );
-
+interface mem_bfm(
+    interface itf
+  );
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
+import my_params_pkg::AWIDTH;
+import my_params_pkg::DWIDTH;
+
 import my_pkg::mem_req_item;
 
 
@@ -36,7 +38,7 @@ task drive( mem_req_item req );
 
   assert( req != null ) else `uvm_fatal( "null_object", "Request to drive null object" );
 
-  if( req.op == my_pkg::mem_req_item #( .DWIDTH( DWIDTH ), .AWIDTH( AWIDTH ) )::WR )
+  if( req.op == my_pkg::mem_req_item::WR )
     begin
       cb.wr   <=  1;
       cb.data <= req.data;

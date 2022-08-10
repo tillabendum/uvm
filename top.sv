@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 import uvm_pkg::*;
 import my_pkg::*;
-// `include "uvm_macros.svh"
 module top;
 
 bit   clk;
@@ -19,26 +18,17 @@ initial
 
 
 
-mem_if #(
-    .DWIDTH( my_pkg::DWIDTH ),
-    .AWIDTH( my_pkg::AWIDTH )
-  ) mem_if (
+mem_if mem_if (
     .clk_i ( clk   ),
     .srst_i( reset )
   );
 
-mem_bfm #(
-    .DWIDTH( my_pkg::DWIDTH ),
-    .AWIDTH( my_pkg::AWIDTH )
-  ) mem_bfm (
+mem_bfm  mem_bfm (
     .itf( mem_if )
   );
 
 
-mem #(
-    .DWIDTH( my_pkg::DWIDTH ),
-    .AWIDTH( my_pkg::AWIDTH )
-  ) DUT (
+mem  DUT (
     .mem_if( mem_if ),
     .clk_i( clk )
   );

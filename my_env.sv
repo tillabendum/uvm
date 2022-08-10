@@ -3,8 +3,7 @@ class my_env extends uvm_env;
 
 
 uvm_sequencer #( mem_req_item )   sequencer;
-typedef mem_ladder_seq  #( .AWIDTH( AWIDTH ), .DWIDTH( DWIDTH ) ) ladder_t;
-ladder_t ladder;
+mem_ladder_seq ladder;
 mem_drv  drv;
 
 
@@ -15,7 +14,7 @@ endfunction: new
 virtual function void build_phase( uvm_phase phase );
   super.build_phase( phase );
   sequencer = new( "sequencer", this );
-  ladder = ladder_t::type_id::create( "ladder", this );
+  ladder = mem_ladder_seq::type_id::create( "ladder", this );
   drv = mem_drv::type_id::create( "drv", this );
 endfunction : build_phase
 

@@ -1,12 +1,10 @@
-module mem #(
-    parameter DWIDTH = 8,
-    parameter AWIDTH = 8
-  )(
+module mem(
     mem_if  mem_if,
     input clk_i
   );
 
-
+import my_params_pkg::DWIDTH;
+import my_params_pkg::AWIDTH;
 
 
 reg  [DWIDTH - 1 : 0] mem[2 ** AWIDTH];
