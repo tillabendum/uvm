@@ -17,6 +17,7 @@ package my_pkg;
 
   `include "mem_ladder_seq.sv"
   `include "mem_drv.sv"
+  `include "mem_mon.sv"
 
 
   `include "my_env.sv"

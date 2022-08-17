@@ -25,7 +25,9 @@ task run_phase( uvm_phase phase );
   forever
     begin
       mem_req_item req;
-      seq_item_port.get_next_item( req );
+
+      // Blocks until a request item is available from the sequencer.
+      this.seq_item_port.get_next_item( req );
       `uvm_info( "Driver got item", "", UVM_MEDIUM )
 
       assert( req != null ) else
@@ -33,7 +35,8 @@ task run_phase( uvm_phase phase );
 
       bfm.drive( req );
 
-      seq_item_port.item_done();
+      //Non-blocking method which completes the driver-sequencer handshake.
+      this.seq_item_port.item_done();
       `uvm_info( "Driver released item", "", UVM_MEDIUM )
 
 
