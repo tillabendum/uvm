@@ -7,6 +7,7 @@ package my_pkg;
 `include "ctrl_subsequence.sv"
 `include "ctrl_sequence.sv"
 
+`include "subcomponent.sv"
 `include "component.sv"
 `include "ctrl_drv.sv"
 

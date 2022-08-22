@@ -25,7 +25,7 @@ virtual function void build_phase( uvm_phase phase );
   sequencer = new ( "sequencer", this );
   seq = ctrl_sequence::type_id::create( "seq", this );
 
-  uvm_config_db #( int )::set( this, ".", "haos", 6 );
+  uvm_config_db #( int )::set( this, "", "haos", 6 );
   if( uvm_config_db #( int )::exists( this, ".", "haos" ))
     begin
       `uvm_info( get_name, $psprintf( "Config found\nwell preserved %d", 5 ), 100);
@@ -35,7 +35,9 @@ virtual function void build_phase( uvm_phase phase );
       `uvm_info( get_name, "Config NOT found ", 100);
     end
   cmp = component::type_id::create( "cmp", this );
-  uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
+  //uvm_resource_db #( int )::set( "uvm_test_top.env.cmp", "val", 12, this );
+  //uvm_config_db #( int )::set( null, "uvm_test_top.env.cmp", "val", 12 );
+  uvm_config_db #( int )::set( this, "cmp", "val", 12 );
 endfunction : build_phase
 
 
