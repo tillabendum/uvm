@@ -10,9 +10,13 @@ function new ( string name = "my_env", uvm_component parent = null );
 endfunction: new
 
 virtual function void build_phase( uvm_phase phase );
+  int ret;
   super.build_phase( phase );
   ladder = mem_ladder_seq::type_id::create( "ladder", this );
   ag = mem_ag::type_id::create( "ag", this );
+  uvm_config_db #( int ) :: set( this, "", "popularity", 100 );
+  uvm_config_db #( int ) :: get( this, "", "popularity", ret );
+
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );

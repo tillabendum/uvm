@@ -35,6 +35,11 @@ virtual function void connect_phase( uvm_phase phase );
     drv.seq_item_port.connect( sequencer.seq_item_export );
 endfunction
 
+virtual function void start_of_simulation_phase( uvm_phase phase );
+  uvm_resource_pool pool;
+  pool = uvm_resource_pool::get();
+  pool.dump(1);
+endfunction
 
 
 endclass

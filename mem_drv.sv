@@ -12,8 +12,10 @@ local virtual mem_bfm  bfm;
 function void build_phase( uvm_phase phase );
   super.build_phase( phase );
 
-  if( !uvm_config_db #( virtual interface mem_bfm )::get( this, "", "bfm", bfm ) )
-  `uvm_fatal( "resource", "Config Error" )
+  if( !uvm_resource_db #( virtual interface mem_bfm )::read_by_name( "shared", "bfm", bfm, this ) )
+    begin
+      `uvm_fatal( "resource", "Config Error" )
+    end
 endfunction : build_phase
 
 
