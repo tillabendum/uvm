@@ -1,3 +1,4 @@
+#!/usr/bin/sh
 vlogan -full64 -ntb_opts uvm-1.2 -sverilog
 vlogan -full64 -ntb_opts uvm-1.2 -sverilog my_params_pkg.sv
 vlogan -full64 -ntb_opts uvm-1.2 -sverilog my_pkg.sv
