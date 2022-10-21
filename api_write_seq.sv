@@ -6,6 +6,9 @@ class api_write_seq extends uvm_sequence #( mem_req_item );
 bit [AWIDTH - 1 : 0]  addr;
 bit [DWIDTH - 1 : 0]  data;
 
+function new( string name = "" );
+  super.new( name );
+endfunction
 
 task body();
   req = mem_req_item::type_id::create( "mem_write_request" );

@@ -10,8 +10,8 @@ rand bit [DWIDTH - 1 : 0]  data;
 rand op_t                    op;
 
 
-function new();
-  super.new;
+function new( string name = "" );
+  super.new( name );
 endfunction
 
 
