@@ -8,12 +8,14 @@ endfunction: new
 
 comp_a a;
 comp_b b;
+comp_c c;
 
 
 virtual function void build_phase( uvm_phase phase );
   super.build_phase( phase );
   a = comp_a::type_id::create( "a", this );
   b = comp_b::type_id::create( "b", this );
+  c = comp_c::type_id::create( "c", this );
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );

@@ -5,6 +5,7 @@ package my_pkg;
 
 `include "comp_a.sv"
 `include "comp_b.sv"
+`include "comp_c.sv"
 `include "my_env.sv"
 `include "my_test.sv"
 
