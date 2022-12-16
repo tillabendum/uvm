@@ -1,3 +1,10 @@
+// Compnent hierarchy
+//
+// test
+//   env
+//     comp_a
+//     comp_b
+
 class my_test extends uvm_test;
    `uvm_component_utils( my_test )
    my_env env;

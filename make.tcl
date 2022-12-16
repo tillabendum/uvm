@@ -21,7 +21,7 @@ proc all {} {
   }
 
 proc sim {} {
-    vsim -voptargs=+acc -optionset UVMDEBUG +UVM_TESTNAME=my_test top
+    vsim -novopt -optionset UVMDEBUG +UVM_TESTNAME=my_test +UVM_PHASE_TRACE +UVM_OBJECTION_TRACE top
   }
 
 proc runa {} {
