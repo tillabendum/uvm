@@ -2,8 +2,9 @@
 //
 // test
 //   env
-//     comp_a
-//     comp_b
+//     comp_a (uses main_phase)
+//     comp_b (uses main_phase)
+//     comp_b (uses run_phase)
 
 class my_test extends uvm_test;
    `uvm_component_utils( my_test )
