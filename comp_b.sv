@@ -7,7 +7,9 @@ function new ( string name = "comp_b", uvm_component parent = null );
 endfunction: new
 
 task main_phase( uvm_phase phase );
- #200ns;
+ phase.raise_objection(this, "B in run");
+ #120ns;
+ phase.drop_objection(this,"C stopped");
 endtask
 
 endclass
