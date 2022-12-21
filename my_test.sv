@@ -7,8 +7,13 @@ class my_test extends uvm_test;
    endfunction : new
 
    function void build_phase( uvm_phase phase );
-      super.build_phase( phase );
-      env = my_env::type_id::create( "env", this );
+     my_obj  obj;
+     super.build_phase( phase );
+     // Preparing configuration
+     obj = my_obj::type_id::create();
+     uvm_resource_db#(my_obj)::set("seq[*]", "cfg",obj,this);
+
+     env = my_env::type_id::create( "env", this );
    endfunction : build_phase
 
   task run_phase( uvm_phase phase );
@@ -18,3 +23,4 @@ class my_test extends uvm_test;
   endtask
 
 endclass
+
