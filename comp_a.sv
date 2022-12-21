@@ -8,7 +8,9 @@ endfunction: new
 
 
 task main_phase( uvm_phase phase );
+  phase.raise_objection(this, "A in run");
  #100ns;
+  phase.drop_objection(this,"A stopped");
 endtask
 
 
