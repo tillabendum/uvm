@@ -9,6 +9,9 @@ class my_test extends uvm_test;
    function void build_phase( uvm_phase phase );
       super.build_phase( phase );
       env = my_env::type_id::create( "env", this );
+
+      // Targeting to environments infos in a recursive way
+      set_report_severity_action_hier( UVM_INFO, UVM_DISPLAY |  UVM_LOG );
    endfunction : build_phase
 
   task run_phase( uvm_phase phase );
