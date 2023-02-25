@@ -3,6 +3,7 @@ package my_pkg;
   `include "uvm_macros.svh"
 
 
+`include "my_obj.sv"
 `include "my_env.sv"
 `include "my_test.sv"
 
