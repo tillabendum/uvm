@@ -20,4 +20,11 @@ class my_test extends uvm_test;
     phase.drop_objection( this );
   endtask
 
+virtual function void end_of_elaboration_phase(uvm_phase phase);
+  uvm_factory factory;
+	factory = uvm_factory::get;
+	set_report_id_verbosity_hier("freedom", UVM_DEBUG);
+	factory.print(1);
+endfunction
+
 endclass

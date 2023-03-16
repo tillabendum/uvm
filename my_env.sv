@@ -1,5 +1,4 @@
 class my_env extends uvm_env;
-`uvm_component_utils( my_env )
 
 function new ( string name = "my_env", uvm_component parent = null );
   super.new( name, parent );
@@ -8,6 +7,13 @@ endfunction: new
   UVM_FILE desc_default;       // All infos got there
   UVM_FILE desc_warnings;      // Warnings got there
   UVM_FILE desc_my_id;   // Selected id event arrive at this location
+
+  my_obj  obj;
+
+`uvm_component_utils_begin( my_env )
+  `uvm_field_object( obj, UVM_DEFAULT)
+`uvm_component_utils_end
+
 
 virtual function void build_phase( uvm_phase phase );
   super.build_phase( phase );
@@ -23,12 +29,25 @@ virtual function void build_phase( uvm_phase phase );
   //Defining actions locally to environment
   set_report_severity_action( UVM_WARNING, UVM_DISPLAY |  UVM_LOG );
 
+  obj = my_obj::type_id::create("obj", this);
+
   reporting_with_macros();
   check_logging();
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );
   super.connect_phase( phase );
+endfunction
+
+
+virtual function void start_of_simulation_phase(uvm_phase phase);
+  obj.touch();
+endfunction
+
+virtual function void end_of_elaboration_phase(uvm_phase phase);
+  uvm_top.print_topology();
+  //umv_factory::print();
+
 endfunction
 
 

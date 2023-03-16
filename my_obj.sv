@@ -1,6 +1,6 @@
 class my_obj extends uvm_object;
 
-  typedef enum {HAOS,MUOS,DEI} val_t;
+  typedef enum {HAOS, MUOS, DEI} val_t;
 
   val_t val;
 
@@ -8,14 +8,14 @@ class my_obj extends uvm_object;
     super.new(name);
   endfunction
 
-
-
+  function void touch();
+    `uvm_info("freedom", "Don't touch me.", UVM_NONE);
+  endfunction
 
 
 
   `uvm_object_utils_begin(my_obj)
-    `uvm_field_enum( val_t, val, UVM_ALL_ON )
-
+    `uvm_field_enum(val_t, val, UVM_ALL_ON)
   `uvm_object_utils_end
 
 endclass
