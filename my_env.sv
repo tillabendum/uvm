@@ -8,7 +8,8 @@ endfunction: new
   UVM_FILE desc_warnings;      // Warnings got there
   UVM_FILE desc_my_id;   // Selected id event arrive at this location
 
-  my_obj  obj;
+  my_obj        obj;
+  my_comp       comp;
 
 `uvm_component_utils_begin( my_env )
   `uvm_field_object( obj, UVM_DEFAULT)
@@ -16,6 +17,8 @@ endfunction: new
 
 
 virtual function void build_phase( uvm_phase phase );
+  catcher_0 cat_0=new;
+  catcher_1 cat_1=new;
   super.build_phase( phase );
 
   //Preparing files for reporting
@@ -30,13 +33,18 @@ virtual function void build_phase( uvm_phase phase );
   set_report_severity_action( UVM_WARNING, UVM_DISPLAY |  UVM_LOG );
 
   obj = my_obj::type_id::create("obj", this);
+  comp= my_comp::type_id::create("comp", this);
+
+  uvm_report_cb::add(comp, cat_0);
+  uvm_report_cb::add(comp, cat_1);
+
 
   reporting_with_macros();
   check_logging();
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );
-  super.connect_phase( phase );
+  super.connect_phase(phase);
 endfunction
 
 
