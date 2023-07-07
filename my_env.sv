@@ -20,9 +20,13 @@ virtual function void build_phase(uvm_phase phase);
 endfunction : build_phase
 
 virtual function void connect_phase(uvm_phase phase);
+  /// Forward
   a.bpp.connect(b.bpp);
   b.bpp.connect(c.bpe);
   c.bpe.connect(d.bpi);
+
+  /// Backward
+	a.bgp.connect(d.bgi);
 endfunction
 
 

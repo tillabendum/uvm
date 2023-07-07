@@ -2,13 +2,27 @@ class comp_d extends uvm_component;
 `uvm_component_utils(comp_d)
 
 uvm_blocking_put_imp #(.T(my_obj), .IMP(comp_d)) bpi;
+uvm_blocking_get_imp #(.T(my_obj), .IMP(comp_d)) bgi;
 
 task put(my_obj obj);
-  `uvm_info("imp", "Received object", UVM_NONE)
+  `uvm_info("put_imp", "Received object", UVM_NONE)
   obj.print();
-  `uvm_info("imp", "Hold 10ns", UVM_NONE)
+  `uvm_info("put_imp", "Hold 10ns", UVM_NONE)
   #(10ns);
 endtask
+
+
+task get(output my_obj obj);
+  obj = my_obj::type_id::create("obj", this);
+  obj.randomize();
+  `uvm_info("get_port_d", "Create object, randomize and send", UVM_NONE)
+  obj.print();
+  `uvm_info("get_port_d", "Hold 10ns", UVM_NONE)
+  #(10ns);
+  `uvm_info("put_port_d", "Task released", UVM_NONE)
+endtask
+
+
 
 function new (string name = "comp_d", uvm_component parent = null);
   super.new(name, parent);
@@ -17,7 +31,11 @@ endfunction: new
 virtual function void build_phase(uvm_phase phase);
   super.build_phase(phase);
   bpi=new(
-    .name("bpe"),
+    .name("bpi"),
+    .imp(this)
+  );
+  bgi=new(
+    .name("bgi"),
     .imp(this)
   );
 endfunction : build_phase
