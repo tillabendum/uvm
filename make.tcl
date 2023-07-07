@@ -21,7 +21,7 @@ proc all {} {
   }
 
 proc sim {} {
-    vsim -novopt -optionset UVMDEBUG +UVM_TESTNAME=my_test top
+    vsim -novopt -optionset UVMDEBUG +UVM_TESTNAME=test top
   }
 
 proc runa {} {
