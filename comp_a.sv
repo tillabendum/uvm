@@ -27,7 +27,7 @@ virtual task run_phase(uvm_phase phase);
   phase.raise_objection(this);
   obj = my_obj::type_id::create("obj", this);
   obj.randomize();
-  `uvm_info("port", "Create object, randomize and send end send", UVM_NONE)
+  `uvm_info("port", "Create object, randomize and send", UVM_NONE)
   obj.print();
   bpp.put(obj);
   `uvm_info("put_port_a", "Task released", UVM_NONE)
