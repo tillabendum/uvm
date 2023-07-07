@@ -20,7 +20,15 @@ virtual function void build_phase(uvm_phase phase);
 endfunction : build_phase
 
 virtual function void connect_phase(uvm_phase phase);
-
+  a.bpp.connect(b.bpp);
+  b.bpp.connect(c.bpe);
+  c.bpe.connect(d.bpi);
 endfunction
+
+
+virtual function void start_of_simulation();
+  a.bpp.debug_connected_to();
+endfunction
+
 
 endclass:my_env
