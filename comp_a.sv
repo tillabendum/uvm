@@ -32,18 +32,19 @@ endfunction
 
 virtual task run_phase(uvm_phase phase);
   my_obj  obj, got_obj;
+  bit                  res;
   phase.raise_objection(this);
   /// Forward transaction
   obj = my_obj::type_id::create("obj", this);
   obj.randomize();
-  `uvm_info("put_port_a", "Create object, randomize and send", UVM_NONE)
+  `uvm_info("put_port", "Create object, randomize and send", UVM_NONE)
   obj.print();
   bpp.put(obj);
-  `uvm_info("put_port_a", "Task released", UVM_NONE)
+  `uvm_info("put_port", "Task released", UVM_NONE)
 
   /// Backward transaction
   bgp.get(got_obj);
-  `uvm_info("get_port_a", "Got transaction", UVM_NONE)
+  `uvm_info("get_port", "Got transaction", UVM_NONE)
   got_obj.print();
 
   ///

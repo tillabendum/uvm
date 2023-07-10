@@ -15,13 +15,12 @@ endtask
 task get(output my_obj obj);
   obj = my_obj::type_id::create("obj", this);
   obj.randomize();
-  `uvm_info("get_port_d", "Create object, randomize and send", UVM_NONE)
+  `uvm_info("get_imp", "Create object, randomize and send", UVM_NONE)
   obj.print();
-  `uvm_info("get_port_d", "Hold 10ns", UVM_NONE)
+  `uvm_info("get_imp", "Hold 10ns", UVM_NONE)
   #(10ns);
-  `uvm_info("put_port_d", "Task released", UVM_NONE)
+  `uvm_info("get_imp", "Task released", UVM_NONE)
 endtask
-
 
 
 function new (string name = "comp_d", uvm_component parent = null);
