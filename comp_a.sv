@@ -47,7 +47,7 @@ virtual task run_phase(uvm_phase phase);
   `uvm_info("get_port", "Got transaction", UVM_NONE)
   got_obj.print();
 
-  ///
+  /// Master
   phase.drop_objection(this);
 endtask
 
