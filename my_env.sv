@@ -28,14 +28,19 @@ virtual function void connect_phase(uvm_phase phase);
   /// get interface connection
   a.bgp.connect(d.bgi);
 
-  /// master connection
+  /// Double connection to d.master and to c.peek
+  b.bpep.connect(c.bpei);
   b.bpep.connect(c.bme);
   c.bme.connect(d.bmi);
+
+
+
 endfunction
 
 
 virtual function void start_of_simulation();
   a.bpp.debug_connected_to();
+  b.bpep.debug_connected_to();
 endfunction
 
 

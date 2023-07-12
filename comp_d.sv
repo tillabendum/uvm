@@ -28,10 +28,10 @@ endtask
 task peek(output my_obj obj);
   obj = my_obj::type_id::create("obj", this);
   obj.randomize();
-  `uvm_info("peek_imp", "Create object, randomize and send", UVM_NONE)
+  `uvm_info("peek_imp", "Create object, randomize and peek", UVM_NONE)
   obj.print();
-  `uvm_info("peek_imp", "Hold 10ns", UVM_NONE)
-  #(10ns);
+  `uvm_info("peek_imp", "Hold 5ns", UVM_NONE)
+  #(5ns);
   `uvm_info("peek_imp", "Task released", UVM_NONE)
 endtask
 
