@@ -4,6 +4,7 @@ package my_pkg;
   `include "uvm_macros.svh"
 
   `include "mem_req_item.sv"
+  `include "my_seq.sv"
 
   `include "registers.sv"
   `include "my_reg_file.sv"

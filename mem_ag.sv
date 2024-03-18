@@ -12,7 +12,7 @@ endfunction
 
 mem_drv                           drv;
 mem_mon                           mon;
-uvm_sequencer #( mem_req_item )   sequencer;
+uvm_sequencer #( mem_req_item )   seqr;
 
 
 
@@ -21,7 +21,7 @@ virtual function void build_phase( uvm_phase phase );
   if( get_is_active() )
     begin
       drv = mem_drv::type_id::create( "drv", this );
-      sequencer = new( "sequencer", this );
+      seqr = new( "sequencer", this );
     end
 
   // Both active andpassive agents need a monitor
@@ -32,14 +32,14 @@ endfunction
 
 virtual function void connect_phase( uvm_phase phase );
   if( get_is_active() )
-    drv.seq_item_port.connect( sequencer.seq_item_export );
+    drv.seq_item_port.connect( seqr.seq_item_export );
 endfunction
+
 
 virtual function void start_of_simulation_phase( uvm_phase phase );
   uvm_resource_pool pool;
   pool = uvm_resource_pool::get();
   pool.dump(1);
 endfunction
-
 
 endclass

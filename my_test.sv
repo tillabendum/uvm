@@ -18,8 +18,12 @@ class my_test extends uvm_test;
 
 
 
-
-
-
+  task main_phase( uvm_phase phase );
+    my_seq seq;
+    phase.raise_objection( this );
+    seq = my_seq::type_id::create("seq");
+    seq.start( env.ag.seqr );
+    phase.drop_objection( this );
+  endtask : main_phase
 
 endclass

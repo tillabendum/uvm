@@ -20,6 +20,7 @@ virtual function void build();
   // Mapping everything
   default_map.add_reg( start_send_data, 0 );
 
+  lock_model();
 endfunction
 
 endclass
