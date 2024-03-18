@@ -4,6 +4,8 @@ class my_env extends uvm_env;
 
 mem_ladder_seq  ladder;
 mem_ag          ag;
+my_reg_block    address_model;
+reg2bus_adapter adapter;
 
 function new ( string name = "my_env", uvm_component parent = null );
   super.new( name, parent );
@@ -17,10 +19,16 @@ virtual function void build_phase( uvm_phase phase );
   uvm_config_db #( int ) :: set( this, "", "popularity", 100 );
   uvm_config_db #( int ) :: get( this, "", "popularity", ret );
 
+  if (!(uvm_config_db#(my_reg_block)::get(this, "", "address_model", address_model))) begin
+    `uvm_fatal("config", "Failed to receive address_model from test")
+  end
+
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );
   super.connect_phase( phase );
+  address_model.default_map.set_sequencer(ag.sequencer, adapter);
+
 endfunction
 
 
