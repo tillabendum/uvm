@@ -7,6 +7,7 @@ package my_pkg;
 
   `include "registers.sv"
   `include "my_reg_file.sv"
+  `include "storage.sv"
   `include "my_reg_block.sv"
 
   `include "my_seq.sv"

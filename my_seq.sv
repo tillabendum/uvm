@@ -22,7 +22,7 @@ task body;
    
    ral.randomize();
    ral.update(status,,this);
-   #10;
+   ral.shadow_mem.write(status, 32'h00, 16'hcafe,,,this);
 
    /*
    tr = mem_req_item::type_id::create("tr");

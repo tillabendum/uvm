@@ -6,6 +6,10 @@ class my_reg_block extends uvm_reg_block;
 rand StartSendDataReg  start_send_data;
 rand cnt_reg           cnt;
 
+// Memories
+rand storage           shadow_mem;
+
+
 function new( string name = "my_reg_block" );
   super.new( name, UVM_NO_COVERAGE );
 endfunction
@@ -23,10 +27,19 @@ virtual function void build();
   cnt.configure( this, null, "" );
   cnt.build();
 
+  // Per map set of actions
+  shadow_mem = storage::type_id::create("shadow_mem", ,get_full_name);
+  shadow_mem.configure( this, "" );
 
   // Mapping everything
   default_map.add_reg( start_send_data, 12 );
   default_map.add_reg( cnt, 36 );
+  default_map.add_mem( 
+    .mem(shadow_mem), 
+    .offset(32'h0000_0080), 
+    .rights("RW"),
+    .unmapped(0) // default 0
+  );
 
   lock_model();
 endfunction
