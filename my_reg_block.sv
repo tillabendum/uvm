@@ -11,7 +11,7 @@ function new( string name = "my_reg_block" );
 endfunction
 
 virtual function void build();
-  default_map = create_map( "default_map", 32'hfc40_0000, 4, UVM_LITTLE_ENDIAN, 1 );
+  default_map = create_map( "default_map", 32'h0000_0000, 4, UVM_LITTLE_ENDIAN, 1 );
 
   // Per register set of actions
   start_send_data = StartSendDataReg::type_id::create( "start_send_data",, get_full_name );
@@ -25,8 +25,8 @@ virtual function void build();
 
 
   // Mapping everything
-  default_map.add_reg( start_send_data, 0 );
-  default_map.add_reg( cnt, 12 );
+  default_map.add_reg( start_send_data, 12 );
+  default_map.add_reg( cnt, 36 );
 
   lock_model();
 endfunction
