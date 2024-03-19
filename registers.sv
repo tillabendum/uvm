@@ -59,11 +59,29 @@ rand uvm_reg_field ptp;
 // Fields configuration
 ////////////////////////////////////////////////////////////////////////////////
 virtual function build();
-  ecpri_type = uvm_reg_field::type_id::create( .name( "ecpri_type" ), .parent( null ), .contxt( get_full_name() ) );
-  ecpri_type.configure( .parent( this ), .size( 1 ), .lsb_pos( 0 ), .access( "RW" ), .volatile( 0 ), .reset( 0 ), .has_reset( 1 ), .is_rand( 1 ), .individually_accessible( 0 ) );
+  ecpri_type = uvm_reg_field::type_id::create( .name( "ecpri_type" ));
+  ecpri_type.configure( .parent( this ), .size( 8 ), .lsb_pos( 0 ), .access( "RW" ), .volatile( 0 ), .reset( 0 ), .has_reset( 1 ), .is_rand( 1 ), .individually_accessible( 0 ) );
 
-  ptp = uvm_reg_field::type_id::create( .name( "ptp" ), .parent( null ), .contxt( get_full_name() ) );
-  ptp.configure( .parent( this ), .size( 1 ), .lsb_pos( 1 ), .access( "RW" ), .volatile( 0 ), .reset( 0 ), .has_reset( 1 ), .is_rand( 1 ), .individually_accessible( 0 ) );
+  ptp = uvm_reg_field::type_id::create( .name( "ptp" ));
+  ptp.configure( .parent( this ), .size( 4 ), .lsb_pos( 8 ), .access( "RW" ), .volatile( 0 ), .reset( 0 ), .has_reset( 1 ), .is_rand( 1 ), .individually_accessible( 0 ) );
 endfunction
 
 endclass:StartSendDataReg
+
+class cnt_reg extends uvm_reg;
+`uvm_object_utils( cnt_reg );
+
+rand uvm_reg_field cont;
+
+function new(string name = "ctrl");
+  super.new(name, 16, UVM_NO_COVERAGE);
+endfunction
+
+virtual function build();
+  cont = uvm_reg_field::type_id::create( .name( "cont" ));
+  cont.configure( .parent( this ), .size( DWIDTH ), .lsb_pos( 0 ), .access( "RW" ), .volatile( 0 ), .reset( 0 ), .has_reset( 1 ), .is_rand( 1 ), .individually_accessible( 0 ) );
+endfunction
+
+endclass
+
+

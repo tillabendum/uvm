@@ -3,7 +3,8 @@ class my_reg_block extends uvm_reg_block;
 `uvm_object_utils( my_reg_block )
 
 // Registers
-StartSendDataReg start_send_data;
+rand StartSendDataReg  start_send_data;
+rand cnt_reg           cnt;
 
 function new( string name = "my_reg_block" );
   super.new( name, UVM_NO_COVERAGE );
@@ -17,8 +18,15 @@ virtual function void build();
   start_send_data.configure( this, null, "" );
   start_send_data.build();
 
+  // Per register set of actions
+  cnt = cnt_reg::type_id::create( "cnt",, get_full_name );
+  cnt.configure( this, null, "" );
+  cnt.build();
+
+
   // Mapping everything
   default_map.add_reg( start_send_data, 0 );
+  default_map.add_reg( cnt, 12 );
 
   lock_model();
 endfunction

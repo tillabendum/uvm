@@ -64,22 +64,22 @@ task monitor( mailbox mbx );
         begin
           req = new;
           req.set_write;
-          req.data <= cb.data;
-          req.addr <= cb.addr;
+          req.data = cb.data;
+          req.addr = cb.addr;
           mbx.put( req );
         end
       else if( cb.rd )
         begin
           req = new;
           req.set_read;
-          req.addr <= cb.addr;
+          req.addr = cb.addr;
           mbx.put( req );
         end
       else if( cb.rddatavalid )
         begin
           req = new;
           req.set_resp;
-          req.data <= cb.rddata;
+          req.data = cb.rddata;
           mbx.put( req );
         end
 

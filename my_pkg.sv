@@ -4,12 +4,13 @@ package my_pkg;
   `include "uvm_macros.svh"
 
   `include "mem_req_item.sv"
-  `include "my_seq.sv"
 
   `include "registers.sv"
   `include "my_reg_file.sv"
   `include "my_reg_block.sv"
 
+  `include "my_seq.sv"
+  
   `include "reg2bus_adapter.sv"
 
   `include "api_write_seq.sv"

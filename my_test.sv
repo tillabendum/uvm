@@ -2,7 +2,7 @@ class my_test extends uvm_test;
    `uvm_component_utils( my_test )
    my_env env;
 
-   my_reg_block address_model;
+   rand my_reg_block ral;
 
    function new( string name, uvm_component parent );
       super.new( name, parent );
@@ -11,9 +11,9 @@ class my_test extends uvm_test;
    function void build_phase( uvm_phase phase );
       super.build_phase( phase );
       env = my_env::type_id::create( "env", this );
-      address_model = my_reg_block::type_id::create("address_model");
-      address_model.build();
-      uvm_config_db#(my_reg_block)::set(this, "env", "address_model", address_model);
+      ral = my_reg_block::type_id::create("ral");
+      ral.build();
+      uvm_resource_db#(my_reg_block)::set("*", "ral", ral, this);
    endfunction : build_phase
 
 

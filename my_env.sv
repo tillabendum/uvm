@@ -3,7 +3,7 @@ class my_env extends uvm_env;
 
 
 mem_ag                            ag;
-my_reg_block                      address_model;
+my_reg_block                      ral;
 reg2bus_adapter                   adapter;
 uvm_reg_predictor#(mem_req_item)  predictor;
 
@@ -16,8 +16,8 @@ virtual function void build_phase( uvm_phase phase );
   ag = mem_ag::type_id::create( "ag", this );
 
 
-  if (!(uvm_config_db#(my_reg_block)::get(this, "", "address_model", address_model))) begin
-    `uvm_fatal("config", "Failed to receive address_model from test")
+  if (!(uvm_resource_db#(my_reg_block)::read_by_type(get_full_name, ral, this))) begin
+    `uvm_fatal("config", "Failed to receive ral from test")
   end
 
   predictor = uvm_reg_predictor#(mem_req_item)::type_id::create("predictor", this);
@@ -28,10 +28,10 @@ virtual function void connect_phase( uvm_phase phase );
   super.connect_phase( phase );
 
   // Connecting sequencer and adapter to map
-  address_model.default_map.set_sequencer(ag.seqr, adapter);
+  ral.default_map.set_sequencer(ag.seqr, adapter);
 
   // Connecting predictor
-  predictor.map     = address_model.default_map;
+  predictor.map     = ral.default_map;
   predictor.adapter = adapter;
   ag.mon.mon_analysis_port.connect(predictor.bus_in);
 
