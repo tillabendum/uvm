@@ -10,7 +10,6 @@ virtual function void build_phase( uvm_phase phase );
 endfunction : build_phase
 
 virtual function void connect_phase( uvm_phase phase );
-  super.connect_phase( phase );
 endfunction
 
 endclass:my_env
