@@ -1,6 +1,4 @@
-my_params_pkg.sv
-my_pkg.sv
-mem.sv
-mem_if.sv
-mem_bfm.sv
-top.sv
+tb_params_pkg.sv
+reset_agent/my_reset_if.sv
+tb_pkg.sv
+top_tb.sv

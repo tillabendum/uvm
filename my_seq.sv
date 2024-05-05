@@ -1,6 +1,7 @@
-class my_seq extends uvm_sequence#(mem_req_item);
-
+class my_seq extends uvm_sequence#(my_haos_tr);
 `uvm_object_utils( my_seq );
+
+my_haos_reg_block ral;
 
 function new( string name = "" );
    super.new( name );
@@ -8,32 +9,14 @@ endfunction: new
 
 
 task body;
-   mem_req_item tr;
-   my_reg_block ral;
    uvm_status_e   status;
 
-   if (!(uvm_resource_db#(my_reg_block)::read_by_type(get_full_name, ral, this))) begin
-     `uvm_fatal("config", "Failed to receive ral from test")
-   end
+   ral.alpha.write(
+      .status(status),
+      .value(12),
+      .parent(this)
+   );
 
-  
-   //ral.cnt.write(status, 16'hFA, , ,this);
-   //ral.start_send_data.write(status, '1, , ,this);
-   
-   ral.randomize();
-   ral.update(status,,this);
-   ral.shadow_mem.write(status, 32'h00, 16'hcafe,,,this);
-
-   /*
-   tr = mem_req_item::type_id::create("tr");
-   tr.set_write;
-   tr.addr = 32'hfc40_0000;
-   //tr.addr = 32'hce;
-   tr.data = 12;
-   
-   start_item(tr);
-   finish_item(tr);
-   */
 endtask
 
 endclass

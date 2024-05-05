@@ -5,9 +5,19 @@ all:
 	$(MAKE) run
 
 build:
+	$(MAKE) build-uvm
+	$(MAKE) build-rtl
+	$(MAKE) build-tb
+
+build-uvm:
 	vlogan -full64 -ntb_opts uvm-1.2 -sverilog -kdb -timescale=1ns/1ps
+
+build-rtl:
+	vlogan -full64 -ntb_opts uvm-1.2 -sverilog -kdb -timescale=1ns/1ps -f dut/my_haos.f
+
+build-tb:
 	vlogan -full64 -ntb_opts uvm-1.2 -sverilog -kdb -timescale=1ns/1ps -f files.f
-	vcs -sverilog -ntb_opts uvm-1.2 -full64 -debug_access+all -LDFLAGS -Wl,--no-as-needed -kdb top
+	vcs -sverilog -ntb_opts uvm-1.2 -full64 -debug_access+all -LDFLAGS -Wl,--no-as-needed -kdb top_tb
 
 run:
 	./simv +UVM_TESTNAME=my_test
