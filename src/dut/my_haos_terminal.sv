@@ -17,7 +17,9 @@ module my_haos_terminal(
 
   // Registers
   data_t alpha;
-  data_t beta = alpha + 1;
+  data_t beta;
+  
+  assign beta = alpha + 1;
 
   always @(posedge clk) begin
     if (reset) begin
@@ -48,7 +50,7 @@ module my_haos_terminal(
       rdata         <='x;
       rstatus       <='x;
       rdata_valid <= 0;
-    end else if (haos_if.wr) begin
+    end else if (haos_if.rd) begin
       if (haos_if.addr inside {[HAOS_BASE : HAOS_BASE+HAOS_SIZE-1]})begin
         rdata_valid <= 1;
         if(haos_if.addr == HAOS_REG_BETA_ADDR) begin

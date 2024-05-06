@@ -27,7 +27,7 @@ package my_haos_pkg;
   
   // Register addresses relative to muos base
   localparam MUOS_REG_DUMMY_ADDR  = 8;  // RW
-  localparam MUOS_REG_CR_ADDR     = 12;  // RW with fields 
+  localparam MUOS_REG_CR_ADDR     = 12; // RW with fields 
 
   // Memory address offset relative to MUOS_BASE
   localparam MUOS_MEM_OFFSET      = 64;

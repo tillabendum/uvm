@@ -16,6 +16,10 @@ class my_haos_drv extends uvm_driver#(my_haos_tr);
     end
   endfunction
 
+  task post_reset_phase(uvm_phase phase);
+    idle(0);
+  endtask
+
   task run_phase(uvm_phase phase);
     forever begin
       my_haos_tr tr;
@@ -51,7 +55,9 @@ class my_haos_drv extends uvm_driver#(my_haos_tr);
     // waiting response
     tr.delay = 0;
     while (!cfg.vif.wstatus_valid) begin
-      tr.delay++;
+      if( ++tr.delay == WATCHDOG) begin
+        `uvm_error("watchdog","No response to write request")
+      end
       @(posedge cfg.vif.clk);
     end
     tr.status = cfg.vif.wstatus;
@@ -72,7 +78,9 @@ class my_haos_drv extends uvm_driver#(my_haos_tr);
     // waiting response
     tr.delay = 0;
     while (!cfg.vif.rdata_valid) begin
-      tr.delay++;
+      if( ++tr.delay == WATCHDOG) begin
+        `uvm_error("watchdog","No response to read request")
+      end
       @(posedge cfg.vif.clk);
     end
     tr.data = cfg.vif.rdata;
@@ -80,12 +88,15 @@ class my_haos_drv extends uvm_driver#(my_haos_tr);
   endtask
 
 
-  task idle();
+  task idle(int num_clocks = 1);
     cfg.vif.wr    <= 0;
     cfg.vif.rd    <= 0;
     cfg.vif.addr  <= 'x;
     cfg.vif.wdata <= 'x;
     cfg.vif.wstrb <= 'x;
+    repeat(num_clocks) begin
+      @(posedge cfg.vif.clk);
+    end
   endtask
 
 endclass

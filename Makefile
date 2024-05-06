@@ -24,9 +24,9 @@ build-tb:
 	(cd build; vcs -sverilog -ntb_opts uvm-1.2 -full64 -debug_access+all -LDFLAGS -Wl,--no-as-needed -kdb top_tb)
 
 run:
-	(cd build; ./simv +UVM_TESTNAME=my_test)
+	(cd build; ./simv +UVM_TESTNAME=my_test +UVM_MAX_QUIT_COUNT=1)
 
 run-gui:
-	(cd build; ./simv +UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test -gui)
+	(cd build; ./simv +UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test +UVM_MAX_QUIT_COUNT=1 -gui)
 
 
