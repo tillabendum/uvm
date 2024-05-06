@@ -37,6 +37,7 @@ class my_haos_mon extends uvm_monitor;
     my_haos_tr tr;
 
     tr = my_haos_tr::type_id::create("tr");
+    tr.op = WR;
     tr.addr = cfg.vif.addr;
     tr.data = cfg.vif.wdata;
     tr.wstrb = cfg.vif.wstrb;
@@ -59,6 +60,7 @@ class my_haos_mon extends uvm_monitor;
     my_haos_tr tr;
 
     tr = my_haos_tr::type_id::create("tr");
+    tr.op = RD;
     tr.addr = cfg.vif.addr;
     
     @(posedge cfg.vif.clk);

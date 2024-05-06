@@ -55,17 +55,24 @@ virtual function void bus2reg(
     `uvm_fatal( get_name, "Failed to cast into my_haos_tr")
   end
 
+  rw.addr = tr.addr;
+  rw.data = tr.data;
+
   case (tr.op)
-    WR: rw.kind = UVM_WRITE;
-    RD: rw.kind = UVM_READ;
+    WR: begin
+      rw.kind = UVM_WRITE;
+      rw.byte_en = tr.wstrb; 
+    end
+
+    RD: begin
+      rw.kind = UVM_READ;
+      rw.byte_en = '1; 
+    end
+
     default: begin
       `uvm_fatal("ral", $sformatf("Unexpected op %s", tr.op.name))
     end
   endcase
-
-  rw.addr = tr.addr;
-  rw.data = tr.data;
-  rw.byte_en = tr.wstrb; 
   
   case(tr.status)
     OK:  rw.status = UVM_IS_OK;

@@ -8,7 +8,7 @@ class my_haos_tr extends uvm_sequence_item;
   op_t        op;
   addr_t      addr;
   data_t      data;
-  bit [NUM_BITS_NUM_DATA_BYTES-1:0]   wstrb;
+  bit [NUM_DATA_BYTES-1:0]   wstrb;
   // Status type is same for write and read operations for simplicity
   status_t    status;
   int         delay;

@@ -17,7 +17,7 @@ virtual function build();
     .parent( this ), 
     .size( DWIDTH ), 
     .lsb_pos( 0 ), 
-    .access( "RW" ), 
+    .access( "WO" ), 
     .volatile( 0 ), 
     .reset( 0 ), 
     .has_reset( 1 ), 

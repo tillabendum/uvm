@@ -28,6 +28,8 @@ task body;
       );
    `uvm_info("rd", $sformatf("Read data %0h from haos.beta with status %s", read_data, status.name), UVM_NONE)
 
+   #(10ns);
+
 endtask
 
 endclass
