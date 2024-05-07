@@ -33,12 +33,11 @@ package tb_pkg;
   `include "src/ral/my_reg2bus_adapter.sv"
   `include "src/ral/my_muos_reg_block.sv"
   `include "src/ral/my_haos_reg_block.sv"
-  
-  //sequences
-  `include "src/my_env_cfg.sv"
-  `include "src/my_seq.sv"
+  // RAL sequences
+  `include "src/ral/seq/my_haos_seq.sv"
 
   //tops
+  `include "src/my_env_cfg.sv"
   `include "src/my_env.sv"
   `include "src/my_test.sv"
 

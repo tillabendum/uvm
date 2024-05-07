@@ -1,5 +1,5 @@
-class my_seq extends uvm_sequence#(my_haos_tr);
-`uvm_object_utils( my_seq );
+class my_haos_seq extends uvm_sequence#(my_haos_tr);
+`uvm_object_utils( my_haos_seq );
 
 my_haos_reg_block ral;
 

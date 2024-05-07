@@ -52,13 +52,13 @@ class my_test extends uvm_test;
 
 
   task main_phase( uvm_phase phase );
-    my_seq seq;
+    my_haos_seq haos_seq;
 
     phase.raise_objection( this );
  
-    seq = my_seq::type_id::create("seq");
-    seq.ral = ral;
-    seq.start(null);
+    haos_seq = my_haos_seq::type_id::create("haos_seq");
+    haos_seq.ral = ral;
+    haos_seq.start(null);
    
     phase.drop_objection( this );
   endtask : main_phase
