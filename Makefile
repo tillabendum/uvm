@@ -1,4 +1,4 @@
-.PHONY: all, build, run
+.PHONY: all, build-uvm, build-rtl, build-tb, build, run, run-gui
 
 ROOT_DIR=$(shell pwd)
 

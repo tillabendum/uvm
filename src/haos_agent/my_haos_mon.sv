@@ -3,6 +3,7 @@ class my_haos_mon extends uvm_monitor;
   
   my_haos_cfg                     cfg;
   uvm_analysis_port #(my_haos_tr) ap;
+  semaphore                       sem;
 
   function new(string name="mon", uvm_component parent);
     super.new(name, parent);
@@ -16,8 +17,10 @@ class my_haos_mon extends uvm_monitor;
       `uvm_fatal("configuration", "Failed to get configuration for haos monitor")
     end
 
+    sem = new(1);
     ap = new("ap", this);
   endfunction
+
 
   task run_phase(uvm_phase phase);
     forever begin
@@ -33,9 +36,26 @@ class my_haos_mon extends uvm_monitor;
   endtask  
 
 
+  function void phase_ready_to_end(uvm_phase phase);
+  // Use your own phase name which you want to stall,
+  // should_i_wait_or_not is a variable or function that
+  // you should see when do you want to delay the phase or not.
+  if(phase.get_name == "run" && (!sem.try_get())) begin
+      phase.raise_objection(this);
+      fork
+        begin
+          sem.get();
+          phase.drop_objection(this);
+        end
+      join_none
+    end
+  endfunction
+
+
   task sample_write();
     my_haos_tr tr;
-
+    
+    sem.get();
     tr = my_haos_tr::type_id::create("tr");
     tr.op = WR;
     tr.addr = cfg.vif.addr;
@@ -53,12 +73,14 @@ class my_haos_mon extends uvm_monitor;
     tr.status = cfg.vif.wstatus;
     
     ap.write(tr);
+    sem.put();
   endtask
 
 
   task sample_read();
     my_haos_tr tr;
 
+    sem.get();
     tr = my_haos_tr::type_id::create("tr");
     tr.op = RD;
     tr.addr = cfg.vif.addr;
@@ -75,6 +97,7 @@ class my_haos_mon extends uvm_monitor;
     tr.status = cfg.vif.rstatus;
     
     ap.write(tr);
+    sem.put();
   endtask
 
 endclass
