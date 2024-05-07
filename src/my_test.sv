@@ -27,6 +27,7 @@ class my_test extends uvm_test;
       end
 
       ral = my_haos_reg_block::type_id::create("ral");
+      ral.configure(.parent(null), .hdl_path("top_tb.dut"));
       ral.build();
   
       env_cfg = my_env_cfg::type_id::create("env_cfg");

@@ -18,17 +18,17 @@ virtual function void build();
 
   // Per register set of actions
   alpha = my_alpha_reg::type_id::create( "alpha",, get_full_name );
-  alpha.configure( this, null, "" );
+  alpha.configure( .blk_parent(this), .regfile_parent(null), .hdl_path("alpha") );
   alpha.build();
 
   // Per register set of actions
   beta = my_beta_reg::type_id::create( "beta",, get_full_name );
-  beta.configure( this, null, "" );
+  beta.configure( .blk_parent(this), .regfile_parent(null), .hdl_path("beta") );
   beta.build();
 
   // Per subblock set of actions
   muos = my_muos_reg_block::type_id::create("muos",,get_full_name);
-  muos.configure(.parent(this), .hdl_path(""));
+  muos.configure(.parent(this), .hdl_path("muos"));
   muos.build();
 
 

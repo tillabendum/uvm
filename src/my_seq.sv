@@ -27,6 +27,14 @@ task body;
       .parent(this)
       );
    `uvm_info("rd", $sformatf("Read data %0h from haos.beta with status %s", read_data, status.name), UVM_NONE)
+
+   write_data = 8'hce;
+   ral.alpha.poke(
+      .status(status),
+      .value(write_data),
+      .parent(this)
+   );
+
 endtask
 
 endclass

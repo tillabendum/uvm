@@ -19,12 +19,12 @@ virtual function void build();
 
   // Per register set of actions
   dummy = my_dummy_reg::type_id::create( "dummy",, get_full_name );
-  dummy.configure( this, null, "" );
+  dummy.configure( .blk_parent(this), .regfile_parent(null), .hdl_path("dummy") );
   dummy.build();
 
   // Per register set of actions
   cr = my_cr_reg::type_id::create( "cr",, get_full_name );
-  cr.configure( this, null, "" );
+  cr.configure( .blk_parent(this), .regfile_parent(null), .hdl_path("cr") );
   cr.build();
 
   // Per map set of actions
