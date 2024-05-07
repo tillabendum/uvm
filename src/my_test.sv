@@ -54,6 +54,7 @@ class my_test extends uvm_test;
   task main_phase( uvm_phase phase );
     my_haos_seq haos_seq;
     my_muos_seq muos_seq;
+    my_muos_mem_seq muos_mem_seq;
 
     phase.raise_objection( this );
  
@@ -64,6 +65,10 @@ class my_test extends uvm_test;
     muos_seq = my_muos_seq::type_id::create("muos_seq");
     muos_seq.ral = ral;
     muos_seq.start(null);
+   
+    muos_mem_seq = my_muos_mem_seq::type_id::create("muos_mem_seq");
+    muos_mem_seq.ral = ral;
+    muos_mem_seq.start(null);
    
     phase.drop_objection( this );
   endtask : main_phase

@@ -29,7 +29,7 @@ virtual function void build();
 
   // Per map set of actions
   mem = my_mem::type_id::create("mem", ,get_full_name);
-  mem.configure( this, "" );
+  mem.configure( .parent(this), .hdl_path("mem") );
 
   // Mapping everything
   default_map.add_reg( dummy, MUOS_REG_DUMMY_ADDR );

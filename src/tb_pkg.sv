@@ -36,6 +36,7 @@ package tb_pkg;
   // RAL sequences
   `include "src/ral/seq/my_haos_seq.sv"
   `include "src/ral/seq/my_muos_seq.sv"
+  `include "src/ral/seq/my_muos_mem_seq.sv"
 
   //tops
   `include "src/my_env_cfg.sv"
