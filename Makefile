@@ -30,6 +30,10 @@ run:
 run-gui:
 	$(VCS_BUILD_DIR)/simv +UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test -gui
 
+xrun_all:
+	$(MAKE) xrun_build
+	$(MAKE) xrun_run
+
 xrun_build:
 	mkdir -p $(XRUN_BUILD_DIR)
 	cd $(XRUN_BUILD_DIR) && ROOT_DIR=${PWD} xrun \

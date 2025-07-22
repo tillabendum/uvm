@@ -7,7 +7,7 @@ interface backdoor_if(input clk);
     class proxy_concrete extends my_pkg::backdoor_if_proxy;
 
         task wait_posedge();
-            @cb;
+            @(posedge clk);
         endtask
         
     endclass
