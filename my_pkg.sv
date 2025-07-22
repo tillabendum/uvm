@@ -1,9 +1,14 @@
+`include "uvm_macros.svh"
+
 package my_pkg;
   import uvm_pkg::*;
-  `include "uvm_macros.svh"
+ 
+  `include "uvm_object_cnt.sv"
+  `include "backdoor_if_proxy.sv"
+  `include "backdoor.sv"
+  `include "backdoor_cnt.sv"
 
-
-`include "my_env.sv"
-`include "my_test.sv"
+  `include "my_env.sv"
+  `include "my_test.sv"
 
 endpackage
