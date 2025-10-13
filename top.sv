@@ -18,6 +18,9 @@ backdoor_if bkdr_if(
   );
 
 
+haos haos_inst();
+
+
 initial
   begin
     uvm_pkg::uvm_config_db#(backdoor_if_proxy)::set(null, "uvm_test_top.env.bkdr_cnt", "iproxy", bkdr_if.get_proxy());
@@ -25,3 +28,5 @@ initial
   end
 
 endmodule
+
+bind muos harness_if#(.T(my_pkg::MY_T)) harness_if_inst(cnt);
