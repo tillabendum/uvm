@@ -1,6 +1,7 @@
-module muos(input my_pkg::MY_T cnt);
+module muos(
+    input my_pkg::MY_T cnt,
+    input              clk
+  );
 
 import my_pkg::MY_T;
-
-//harness_if#(.T(my_pkg::MY_T)) harness_if_inst(cnt);
 endmodule

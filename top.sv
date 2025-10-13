@@ -18,7 +18,9 @@ backdoor_if bkdr_if(
   );
 
 
-haos haos_inst();
+haos haos_inst(
+    .clk(clk)
+  );
 
 
 initial
@@ -29,4 +31,4 @@ initial
 
 endmodule
 
-bind muos harness_if#(.T(my_pkg::MY_T)) harness_if_inst(cnt);
+bind muos harness_if#(.T(my_pkg::MY_T)) harness_if_inst(cnt, clk);
