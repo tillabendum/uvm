@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 .PHONY: all-vcs, all-xrun, build, clean, run, run-gui, xrun_build, xrun_run, xrun_gui 
 
+=======
+>>>>>>> 4c8e7c3 (Works as expected)
 PWD=$(shell pwd)
 VCS_BUILD_DIR=vcs_build
 XRUN_BUILD_DIR=xrun_build
@@ -77,3 +80,5 @@ xrun_gui:
     +tracelog=1 \
     -gui \
 	+UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test
+
+.PHONY: all, build, clean, run, run-gui, xrun_build, xrun_run, xrun_gui, xrun_all

@@ -17,11 +17,9 @@ backdoor_if bkdr_if(
     .clk(clk)
   );
 
-
 haos haos_inst(
     .clk(clk)
   );
-
 
 initial
   begin
