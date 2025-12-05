@@ -34,6 +34,7 @@ run-gui:
 	$(VCS_BUILD_DIR)/simv +UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test -gui
 
 xrun_all:
+	$(MAKE) clean
 	$(MAKE) xrun_build
 	$(MAKE) xrun_run
 
@@ -44,6 +45,7 @@ xrun_build:
     -elaborate \
     -mccodegen \
     -sv \
+    -sysv2009 \
     -snapshot area \
     -timescale 1ns/1ps \
     -enable_strict_timescale \
