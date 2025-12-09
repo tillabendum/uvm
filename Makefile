@@ -1,13 +1,18 @@
-.PHONY: all, build, clean, run, run-gui, xrun_build, xrun_run, xrun_gui 
+.PHONY: all-vcs, all-xrun, build, clean, run, run-gui, xrun_build, xrun_run, xrun_gui 
 
 PWD=$(shell pwd)
 VCS_BUILD_DIR=vcs_build
 XRUN_BUILD_DIR=xrun_build
 
-all:
+all-vcs:
 	$(MAKE) clean
 	$(MAKE) build
 	$(MAKE) run
+
+all-xrun:
+	$(MAKE) clean
+	$(MAKE) xrun_build
+	$(MAKE) xrun_run
 
 clean:
 	rm -rf $(VCS_BUILD_DIR)

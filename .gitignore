@@ -1,3 +1,7 @@
 ucli.key
+inter.fsdb
+novas_dump.log
+novas.conf
+novas.rc
 vcs_build/*
 xrun_build/*
