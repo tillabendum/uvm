@@ -16,5 +16,4 @@ class my_test extends uvm_test;
     `uvm_info("log", "Hello world", UVM_NONE)    
     phase.drop_objection( this );
   endtask
-
 endclass
