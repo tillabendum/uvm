@@ -9,6 +9,7 @@ package my_pkg;
 
   localparam params_t DEFAULT_PARAMS = '{WIDTH:1000, DEPTH:1001};
 
+  `include "my_comp_abstract.sv"
   `include "my_comp.sv"
   `include "my_env.sv"
   `include "my_test.sv"
