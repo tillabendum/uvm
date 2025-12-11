@@ -8,6 +8,6 @@ package my_pkg;
   `include "comp_c.sv"
   `include "comp_d.sv"
   `include "my_env.sv"
-  `include "test.sv"
+  `include "my_test.sv"
 
 endpackage

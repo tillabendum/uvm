@@ -1,5 +1,5 @@
-class test extends uvm_test;
-   `uvm_component_utils(test)
+class my_test extends uvm_test;
+   `uvm_component_utils(my_test)
    my_env env;
 
    function new(string name, uvm_component parent);
