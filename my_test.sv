@@ -15,17 +15,17 @@ class my_test extends uvm_test;
  
     phase.raise_objection( this );
 
-    num_proxies = harness_if_proxy#(MY_T)::proxies.size();
+    num_proxies = harness_if_proxy#(MY_T, "cnt")::proxies.size();
     `uvm_info("harness", $sformatf("num_proxies=%0d",num_proxies), UVM_NONE)
 
     for(int unsigned cnt_clk = 0; cnt_clk<5; cnt_clk++) begin
-      harness_if_proxy#(MY_T)::proxies[0].wait_posedge();
-      foreach(harness_if_proxy#(MY_T)::proxies[i]) begin
+      harness_if_proxy#(MY_T, "cnt")::proxies[0].wait_posedge();
+      foreach(harness_if_proxy#(MY_T, "cnt")::proxies[i]) begin
         MY_T    val;
         string  str;
           
-        val = harness_if_proxy#(MY_T)::proxies[i].get_current_val();
-        if(!harness_if_proxy#(MY_T)::proxies[i].name(str)) begin
+        val = harness_if_proxy#(MY_T, "cnt")::proxies[i].get_preponed_val();
+        if(!harness_if_proxy#(MY_T, "cnt")::proxies[i].name(str)) begin
           `uvm_fatal("harness", "Failed to parse path:")
         end
 

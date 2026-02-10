@@ -25,4 +25,4 @@ initial
 
 endmodule
 
-bind muos harness_if#(.T(my_pkg::MY_T)) harness_if_inst(cnt, clk);
+bind muos harness_if#(.T(my_pkg::MY_T), .VAR_NAME("cnt")) harness_if_inst(cnt, clk);

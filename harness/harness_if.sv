@@ -1,5 +1,6 @@
 interface harness_if #(
-    parameter type T = int
+    parameter type T = int,
+    parameter string VAR_NAME="variable"
   )(    
     input T val,
     input clk
@@ -9,7 +10,7 @@ interface harness_if #(
     input val;
   endclocking
 
-  class proxy_concrete extends my_pkg::harness_if_proxy#(.T(T));
+  class proxy_concrete extends my_pkg::harness_if_proxy#(.T(T), .VAR_NAME(VAR_NAME));
     function T get_current_val();
       return val;
     endfunction
@@ -28,16 +29,20 @@ interface harness_if #(
 
       str = $sformatf("%m");
 
-      // Need to remove useless tail after last dot
-      if (!find_last_dot(str, qi)) begin
-        return 0;
+      // Need to remove useless tail after two last dots
+      repeat(2) begin
+        if (!find_last_dot(str, qi)) begin
+          return 0;
+        end
+
+        if(qi == 0) begin
+          return 0;
+        end
+
+        str = cut_head(str, qi - 1);
       end
 
-      if(qi == 0) begin
-        return 0;
-      end
-
-      str = cut_head(str, qi - 1);
+      str = {str, ".", VAR_NAME};
 
       return 1;
     endfunction
