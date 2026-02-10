@@ -13,9 +13,6 @@ sub_top sub(
     .clk(clk)
   );
 
-backdoor_if bkdr_if(
-    .clk(clk)
-  );
 
 haos haos_inst(
     .clk(clk)
@@ -23,7 +20,6 @@ haos haos_inst(
 
 initial
   begin
-    uvm_pkg::uvm_config_db#(backdoor_if_proxy)::set(null, "uvm_test_top.env.bkdr_cnt", "iproxy", bkdr_if.get_proxy());
     run_test();
   end
 
