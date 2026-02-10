@@ -1,7 +1,7 @@
 interface harness_if #(
     parameter type T = int
   )(    
-    inout T val,
+    input T val,
     input clk
   );
 
@@ -18,27 +18,10 @@ interface harness_if #(
       return cb.val;
     endfunction
 
-    function void force_val(input T new_val);
-      static T static_val;
-
-      static_val = new_val;
-      force val = static_val;
-    endfunction
-
     task wait_posedge();
       @(posedge clk);
     endtask
 
-    task force_next_nba(input T new_val);
-      static T static_val;
-      event _;
-      
-      static_val = new_val;
-      ->>_;
-      @_;
-      force val = static_val;
-      release val;
-    endtask
 
     function bit name(output string str);
       int qi;

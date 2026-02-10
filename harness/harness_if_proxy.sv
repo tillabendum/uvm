@@ -1,9 +1,7 @@
 virtual class harness_if_proxy #(type T=int);
   pure virtual function T       get_current_val();
   pure virtual function T       get_preponed_val();
-  pure virtual function void    force_val(input T new_val);
   pure virtual task             wait_posedge();
-  pure virtual task             force_next_nba(input T new_val);
   pure virtual function bit     name(output string str);
 
   static harness_if_proxy#(.T(T)) proxies[$];
