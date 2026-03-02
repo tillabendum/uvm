@@ -1,20 +1,24 @@
 // Bind it with 
 
-//  bind <parent module declaration name> harness_if#(.T(<data type visible from binded location>), .VAR_NAME("<variable name>")) harness_if_inst(<variable name>, <clock name>);
+//  bind <parent module declaration name> harness_n_if#(.T(<data type visible from binded location>), .VAR_NAME("<variable name>")) harness_n_if_inst(<variable name>, <clock name>);
 
-interface harness_if #(
+interface harness_n_if #(
     parameter type T = int,
+    parameter int unsigned N = 1,
     parameter string VAR_NAME="variable"
   )(    
-    input T val,
+    input T val[N],
     input clk
   );
+  
+  typedef T TN[N];
 
   clocking cb@(posedge clk);
     input val;
   endclocking
 
-  class proxy_concrete extends my_pkg::harness_if_proxy#(.T(T), .VAR_NAME(VAR_NAME));
+
+  class proxy_concrete extends my_pkg::harness_if_proxy#(.T(TN), .VAR_NAME(VAR_NAME));
     function T get_current_val();
       return val;
     endfunction
