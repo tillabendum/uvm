@@ -26,3 +26,4 @@ initial
 endmodule
 
 bind muos harness_if#(.T(my_pkg::MY_T), .VAR_NAME("cnt")) harness_if_inst(cnt, clk);
+bind muos harness_n_if#(.T(logic [9:0]), .N(2), .VAR_NAME("map")) harness_if_map_inst(map, clk);
