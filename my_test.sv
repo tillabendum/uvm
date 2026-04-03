@@ -12,8 +12,13 @@ class my_test extends uvm_test;
    endfunction : build_phase
 
   task main_phase( uvm_phase phase );
+    my_parent_sequence                     seq;
     phase.raise_objection( this );
-    `uvm_info("log", "Hello world", UVM_NONE)    
+
+    seq = my_parent_sequence::type_id::create("seq");
+    seq.start(env.seqr, null);
+
+
     phase.drop_objection( this );
   endtask
 
