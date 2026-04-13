@@ -8,10 +8,39 @@ endfunction: new
 
 
 task body;
-      my_sequence seq;
 
-      seq = my_sequence::type_id::create("seq");
-      seq.start(m_sequencer, this);
+      fork
+        begin
+          my_sequence seq;
+          seq = my_sequence::type_id::create("seq");
+          seq.id = 0;
+          seq.start(m_sequencer, this);
+        end
+        begin
+          my_sequence seq;
+          seq = my_sequence::type_id::create("seq");
+          seq.id = 1;
+          seq.start(m_sequencer, this);
+        end
+        begin
+          my_sequence seq;
+          seq = my_sequence::type_id::create("seq");
+          seq.id = 2;
+          seq.start(m_sequencer, this);
+        end
+        begin
+          my_sequence seq;
+          seq = my_sequence::type_id::create("seq");
+          seq.id = 3;
+          seq.start(m_sequencer, this);
+        end
+        begin
+          my_sequence seq;
+          seq = my_sequence::type_id::create("seq");
+          seq.id = 4;
+          seq.start(m_sequencer, this);
+        end
+      join
 endtask
 
 endclass

@@ -12,6 +12,7 @@ class my_env extends uvm_env;
   virtual function void build_phase( uvm_phase phase );
     super.build_phase( phase );
     seqr = new ( "seqr", this );
+    seqr.set_arbitration(UVM_SEQ_ARB_RANDOM);
     drv = my_drv::type_id::create( "drv", this );
   endfunction : build_phase
 
