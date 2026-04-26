@@ -1,4 +1,4 @@
-class comp_c extends uvm_component;
+class comp_c extends comp_base;
 `uvm_component_utils( comp_c )
 
 
@@ -7,9 +7,11 @@ function new ( string name = "comp_c", uvm_component parent = null );
 endfunction: new
 
 task run_phase( uvm_phase phase );
-  phase.raise_objection(this, "C in run");
+  forever begin
  #200ns;
-  phase.drop_objection(this,"C stopped");
+  end
 endtask
+
+
 
 endclass

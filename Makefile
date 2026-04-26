@@ -25,7 +25,7 @@ build:
 	cd $(VCS_BUILD_DIR) && vcs -sverilog -ntb_opts uvm-1.2 -full64 -debug_access+all -LDFLAGS -Wl,--no-as-needed -kdb top
 
 run:
-	$(VCS_BUILD_DIR)/simv +UVM_TESTNAME=my_test
+	$(VCS_BUILD_DIR)/simv +UVM_TESTNAME=my_test +UVM_OBJECTION_TRACE +UVM_PHASE_TRACE
 
 run-gui:
 	$(VCS_BUILD_DIR)/simv +UVM_VERBISITY=UVM_DEBUG +UVM_NO_RELNOTES +UVM_VERDI_TRACE=HIER +UVM_TESTNAME=my_test -gui

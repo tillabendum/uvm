@@ -6,7 +6,7 @@
 //     comp_b (uses main_phase)
 //     comp_b (uses run_phase)
 
-class my_test extends uvm_test;
+class my_test extends comp_base;
    `uvm_component_utils( my_test )
    my_env env;
 
@@ -24,5 +24,6 @@ class my_test extends uvm_test;
     `uvm_info("log", "Hello world", UVM_NONE)    
     phase.drop_objection( this );
   endtask
+
 
 endclass

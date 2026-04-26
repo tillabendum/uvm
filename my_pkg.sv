@@ -3,6 +3,7 @@ package my_pkg;
   `include "uvm_macros.svh"
 
 
+`include "comp_base.sv"
 `include "comp_a.sv"
 `include "comp_b.sv"
 `include "comp_c.sv"

@@ -1,4 +1,4 @@
-class my_env extends uvm_env;
+class my_env extends comp_base;
 `uvm_component_utils( my_env )
 
 function new ( string name = "my_env", uvm_component parent = null );
@@ -25,6 +25,7 @@ endfunction
 virtual function void end_of_elaboration_phase( uvm_phase phase );
   uvm_top.print_topology();
 endfunction
+
 
 
 endclass:my_env

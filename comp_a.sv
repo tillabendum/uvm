@@ -1,4 +1,4 @@
-class comp_a extends uvm_component;
+class comp_a extends comp_base;
 `uvm_component_utils( comp_a )
 
 
@@ -8,10 +8,11 @@ endfunction: new
 
 
 task main_phase( uvm_phase phase );
-  phase.raise_objection(this, "A in run");
+  forever begin
  #100ns;
-  phase.drop_objection(this,"A stopped");
+  end
 endtask
+
 
 
 endclass
